@@ -1,0 +1,167 @@
+/* Thème sombre général */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #121212;
+  color: #e0e0e0;
+}
+
+/* Header */
+header {
+  background: #1f1f1f;
+  color: #e0e0e0;
+  padding: 30px 0;
+  text-align: center;
+}
+
+/* Navigation */
+nav {
+  text-align: center;
+  margin: 20px 0;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Permet aux éléments de passer en ligne quand l’espace est limité */
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+nav ul li {
+  margin: 10px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  font-size: 1.1em;
+  color: #e0e0e0;
+  background: #333;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background 0.3s, color 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  background: #e0e0e0;
+  color: #121212;
+}
+
+/* Box centrale animée */
+.content-box-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  min-height: 60px; /* Évite un "saut" lors de l'animation */
+}
+
+.content-box {
+  background: #1f1f1f;
+  padding: 20px 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.content-box.animate {
+  opacity: 0.5;
+  transform: translateY(-10px);
+}
+
+.content-box h2 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+/* Conteneur de la section principale */
+.section-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Sections */
+.section {
+  background: #1e1e1e;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 30px;
+}
+
+.section p,
+.section ul {
+  font-size: 1em;
+  line-height: 1.6;
+}
+
+/* Projets */
+.project {
+  margin-bottom: 20px;
+}
+
+.project a {
+  color: #bb86fc;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.project a:hover {
+  color: #3700b3;
+}
+
+/* Responsive Styles pour téléphones */
+@media (max-width: 768px) {
+  /* Navigation ajustée pour écran moyen */
+  nav ul {
+    justify-content: space-around;
+  }
+
+  nav ul li {
+    margin: 5px;
+  }
+
+  nav ul li a {
+    font-size: 1em;
+    padding: 10px 15px;
+  }
+
+  .section-container {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Ajustements pour écrans très petits */
+  nav ul {
+    justify-content: center;
+  }
+
+  nav ul li {
+    margin: 5px;
+  }
+
+  nav ul li a {
+    font-size: 0.9em;
+    padding: 8px 12px;
+  }
+
+  .content-box {
+    padding: 15px 30px;
+  }
+
+  .content-box h2 {
+    font-size: 1.3em;
+  }
+
+  .section {
+    padding: 15px;
+  }
+
+  .section p,
+  .section ul {
+    font-size: 0.9em;
+  }
+}

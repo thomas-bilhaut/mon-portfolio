@@ -1,0 +1,58 @@
+/* Container du header */
+.header {
+  background: #1f1f1f;
+  color: #e0e0e0;
+  padding: 20px;
+  text-align: center;  /* Centrer le texte sur les petits écrans */
+}
+
+/* Contenu du header avec alignement en flex */
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;  /* Centrer le contenu horizontalement */
+  flex-direction: row;      /* Par défaut, alignement horizontal */
+}
+
+.profile-image {
+  width: 85px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid #e0e0e0;
+  margin-right: 20px;
+  margin-top: 10px;
+}
+
+/* Ajustements pour les petits écrans */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;  /* Passe en mode colonne pour les petits écrans */
+    align-items: center;
+  }
+
+  .profile-image {
+    width: 80px;  /* Agrandir un peu l'image sur mobile */
+    height: 100px;
+    margin-right: 0;  /* Pas d'espacement à droite */
+    margin-bottom: 10px;  /* Ajouter un peu d'espace sous l'image */
+  }
+
+  .header-text h1 {
+    font-size: 1.5em;  /* Taille du titre réduite sur mobile */
+  }
+
+  .header-text p {
+    font-size: 1em;  /* Taille de texte réduite sur mobile */
+  }
+}
+
+/* Ajustement pour les très petits écrans (ex : smartphones portrait) */
+@media (max-width: 480px) {
+  .header-text h1 {
+    font-size: 1.3em;
+  }
+
+  .header-text p {
+    font-size: 0.9em;
+  }
+}
