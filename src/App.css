@@ -4,6 +4,7 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: #121212;
   color: #e0e0e0;
+  line-height: 1.6;
 }
 
 /* Header */
@@ -23,7 +24,7 @@ nav {
 nav ul {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap; /* Permet aux éléments de passer en ligne quand l’espace est limité */
+  flex-wrap: wrap;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -54,7 +55,7 @@ nav ul li a.active {
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
-  min-height: 60px; /* Évite un "saut" lors de l'animation */
+  min-height: 60px;
 }
 
 .content-box {
@@ -73,6 +74,7 @@ nav ul li a.active {
 .content-box h2 {
   margin: 0;
   font-size: 1.5em;
+  text-align: center;
 }
 
 /* Conteneur de la section principale */
@@ -97,6 +99,35 @@ nav ul li a.active {
   line-height: 1.6;
 }
 
+.section h3 {
+  font-size: 1.2em;
+  margin-top: 20px;
+}
+
+/* Section Formations, Expériences et Compétences */
+#formations ul,
+#experience ul,
+#skills ul {
+  padding-left: 20px; /* Ajoute un peu de marge à gauche pour les listes */
+}
+
+#formations ul li,
+#experience ul li,
+#skills ul li {
+  margin-bottom: 15px; /* Augmente l'espacement entre les éléments de la liste */
+  font-size: 1.1em; /* Optionnel: pour augmenter la taille du texte des éléments */
+  display: flex;
+  align-items: center; /* Pour aligner les icônes avec le texte */
+}
+
+#formations ul li i,
+#experience ul li i,
+#skills ul li i {
+  margin-right: 10px; /* Ajoute de l'espace entre l'icône et le texte */
+  font-size: 1.5em; /* Taille des icônes */
+  color: #bb86fc; /* Choisir une couleur pour les icônes */
+}
+
 /* Projets */
 .project {
   margin-bottom: 20px;
@@ -114,7 +145,6 @@ nav ul li a.active {
 
 /* Responsive Styles pour téléphones */
 @media (max-width: 768px) {
-  /* Navigation ajustée pour écran moyen */
   nav ul {
     justify-content: space-around;
   }
@@ -134,7 +164,6 @@ nav ul li a.active {
 }
 
 @media (max-width: 480px) {
-  /* Ajustements pour écrans très petits */
   nav ul {
     justify-content: center;
   }
@@ -164,4 +193,24 @@ nav ul li a.active {
   .section ul {
     font-size: 0.9em;
   }
+}
+
+/* Bouton LinkedIn */
+.linkedin-button {
+  padding: 10px 20px;
+  background-color: #0077b5;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  text-align: center;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.linkedin-button:hover {
+  background-color: #005582;
 }

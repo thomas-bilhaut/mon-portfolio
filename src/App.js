@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
 import Header from './components/Header';
 import About from './components/About';
+import Experience from './components/Experience';
+import Formations from './components/Formations';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
@@ -36,6 +38,23 @@ function App() {
                 end
               >
                 À propos de
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/experience"
+                onClick={() => handleClick("Experiences")}
+                end
+              >
+                Expériences
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/formations"
+                onClick={() => handleClick("Formations")}
+              >
+                Formations
               </NavLink>
             </li>
             <li>
@@ -78,6 +97,8 @@ function App() {
         <div className="section-container">
           <Routes>
             <Route path="/" element={<About />} />
+            <Route path="/experience" element={<Experience />} />
+            <Route path="/formations" element={<Formations />} />
             <Route path="/skills" element={<Skills />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/contact" element={<Contact />} />
