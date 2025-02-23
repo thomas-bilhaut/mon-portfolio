@@ -84,13 +84,26 @@ nav ul li a.active {
   padding: 20px;
 }
 
-/* Sections */
+/* Animation fade-in pour les sections */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Sections avec transition */
 .section {
   background: #1e1e1e;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   margin-bottom: 30px;
+  animation: fadeIn 0.5s ease-out;
 }
 
 .section p,
@@ -114,18 +127,18 @@ nav ul li a.active {
 #formations ul li,
 #experience ul li,
 #skills ul li {
-  margin-bottom: 15px; /* Augmente l'espacement entre les éléments de la liste */
-  font-size: 1.1em; /* Optionnel: pour augmenter la taille du texte des éléments */
+  margin-bottom: 15px; /* Espacement entre éléments de liste */
+  font-size: 1.1em;
   display: flex;
-  align-items: center; /* Pour aligner les icônes avec le texte */
+  align-items: center;
 }
 
 #formations ul li i,
 #experience ul li i,
 #skills ul li i {
-  margin-right: 10px; /* Ajoute de l'espace entre l'icône et le texte */
-  font-size: 1.5em; /* Taille des icônes */
-  color: #bb86fc; /* Choisir une couleur pour les icônes */
+  margin-right: 10px; /* Espace entre icône et texte */
+  font-size: 1.5em;    /* Taille des icônes */
+  color: #bb86fc;      /* Couleur des icônes */
 }
 
 /* Projets */
@@ -141,6 +154,26 @@ nav ul li a.active {
 
 .project a:hover {
   color: #3700b3;
+}
+
+/* Bouton LinkedIn */
+.action-button {
+  padding: 10px 20px;
+  background-color: #0077b5;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  text-align: center;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.action-button:hover {
+  background-color: #005582;
 }
 
 /* Responsive Styles pour téléphones */
@@ -193,24 +226,4 @@ nav ul li a.active {
   .section ul {
     font-size: 0.9em;
   }
-}
-
-/* Bouton LinkedIn */
-.linkedin-button {
-  padding: 10px 20px;
-  background-color: #0077b5;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  text-align: center;
-  display: inline-block;
-  margin-top: 20px;
-}
-
-.linkedin-button:hover {
-  background-color: #005582;
 }
