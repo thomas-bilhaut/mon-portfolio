@@ -1,5 +1,7 @@
 import React from 'react';
-import imageProfile from '../assets/photo.jpg'; // Ajuste le chemin si nécessaire
+import imageProfile from '../assets/photo.jpg';
+import cvFile from '../assets/CV.pdf';
+
 import './Header.css';
 
 const Header = () => {
@@ -12,6 +14,7 @@ const Header = () => {
           <p>Développeur web en quête d'une alternance</p>
         </div>
       </div>
+      <p >Mon CV : <a href={cvFile}  id="CV" target="_blank" rel="noopener noreferrer">Télécharger mon CV </a></p>
     </header>
   );
 };

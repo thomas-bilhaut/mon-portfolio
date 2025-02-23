@@ -10,48 +10,44 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import './App.css';
 
-function AnimatedRoutes() {
+function AnimatedRoutes({ showContent }) {
   const location = useLocation();
 
   return (
     <AnimatePresence mode="wait">
-      <motion.div
-        key={location.pathname}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -20 }}
-        transition={{ duration: 0.5 }}
-      >
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<About />} />
-          <Route path="/experience" element={<Experience />} />
-          <Route path="/formations" element={<Formations />} />
-          <Route path="/skills" element={<Skills />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </motion.div>
+      {showContent && (
+        <motion.div
+          key={location.pathname}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<About />} />
+            <Route path="/experience" element={<Experience />} />
+            <Route path="/formations" element={<Formations />} />
+            <Route path="/skills" element={<Skills />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </motion.div>
+      )}
     </AnimatePresence>
   );
 }
 
 function App() {
   const [showTitle, setShowTitle] = useState('');
-  const [animateTitle, setAnimateTitle] = useState(false);
+  const [showContent, setShowContent] = useState(true);
 
   const handleClick = (sectionName) => {
-    // Affiche le titre avec animation d'apparition
     setShowTitle(sectionName);
-    setAnimateTitle(true);
-
-    // Après 600ms, déclenche l'animation de disparition
+    setShowContent(false);
     setTimeout(() => {
-      setAnimateTitle(false);
-      // On efface le titre après la durée de l'animation de sortie (ici 600ms)
-      setTimeout(() => {
-        setShowTitle('');
-      }, 600);
-    }, 600);
+      setShowTitle('');
+      setShowContent(true);
+    }, 1200);
   };
 
   return (
@@ -106,7 +102,7 @@ function App() {
                 className="content-box"
                 key="title"
                 initial={{ opacity: 0, scale: 0.8 }}
-                animate={animateTitle ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.6 }}
               >
@@ -118,7 +114,7 @@ function App() {
 
         {/* Contenu avec animation lors du changement de section */}
         <div className="section-container">
-          <AnimatedRoutes />
+          <AnimatedRoutes showContent={showContent} />
         </div>
       </motion.div>
     </Router>

@@ -1,4 +1,8 @@
 /* Thème sombre général */
+html, body {
+  overflow-y: scroll;
+}
+
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -41,13 +45,14 @@ nav ul li a {
   background: #333;
   padding: 10px 20px;
   border-radius: 5px;
-  transition: background 0.3s, color 0.3s;
+  transition: background 0.3s, color 0.3s, transform 0.2s;
 }
 
 nav ul li a:hover,
 nav ul li a.active {
   background: #e0e0e0;
   color: #121212;
+  transform: scale(1.05);
 }
 
 /* Box centrale animée */
@@ -66,11 +71,6 @@ nav ul li a.active {
   transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
-.content-box.animate {
-  opacity: 0.5;
-  transform: translateY(-10px);
-}
-
 .content-box h2 {
   margin: 0;
   font-size: 1.5em;
@@ -84,26 +84,29 @@ nav ul li a.active {
   padding: 20px;
 }
 
-/* Animation fade-in pour les sections */
-@keyframes fadeIn {
-  from {
+/* Animation fade-in pour les sections avec délai */
+@keyframes fadeInDelayed {
+  0% {
     opacity: 0;
     transform: translateY(20px);
   }
-  to {
+  50% {
+    opacity: 0.5;
+  }
+  100% {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* Sections avec transition */
+/* Sections avec transition différée */
 .section {
   background: #1e1e1e;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   margin-bottom: 30px;
-  animation: fadeIn 0.5s ease-out;
+  animation: fadeInDelayed 2s ease-out;
 }
 
 .section p,
@@ -121,13 +124,13 @@ nav ul li a.active {
 #formations ul,
 #experience ul,
 #skills ul {
-  padding-left: 20px; /* Ajoute un peu de marge à gauche pour les listes */
+  padding-left: 20px;
 }
 
 #formations ul li,
 #experience ul li,
 #skills ul li {
-  margin-bottom: 15px; /* Espacement entre éléments de liste */
+  margin-bottom: 15px;
   font-size: 1.1em;
   display: flex;
   align-items: center;
@@ -136,9 +139,9 @@ nav ul li a.active {
 #formations ul li i,
 #experience ul li i,
 #skills ul li i {
-  margin-right: 10px; /* Espace entre icône et texte */
-  font-size: 1.5em;    /* Taille des icônes */
-  color: #bb86fc;      /* Couleur des icônes */
+  margin-right: 10px;
+  font-size: 1.5em;
+  color: #bb86fc;
 }
 
 /* Projets */
@@ -149,14 +152,15 @@ nav ul li a.active {
 .project a {
   color: #bb86fc;
   text-decoration: none;
-  transition: color 0.3s;
+  transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .project a:hover {
   color: #3700b3;
+  transform: scale(1.05);
 }
 
-/* Bouton LinkedIn */
+/* Boutons d'action (Email et LinkedIn) */
 .action-button {
   padding: 10px 20px;
   background-color: #0077b5;
@@ -166,7 +170,7 @@ nav ul li a.active {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, transform 0.2s ease;
   text-align: center;
   display: inline-block;
   margin-top: 20px;
@@ -174,6 +178,7 @@ nav ul li a.active {
 
 .action-button:hover {
   background-color: #005582;
+  transform: scale(1.05);
 }
 
 /* Responsive Styles pour téléphones */
@@ -198,11 +203,12 @@ nav ul li a.active {
 
 @media (max-width: 480px) {
   nav ul {
-    justify-content: center;
+    flex-direction: row;
+    align-items: center;
   }
 
   nav ul li {
-    margin: 5px;
+    margin: 5px 0;
   }
 
   nav ul li a {

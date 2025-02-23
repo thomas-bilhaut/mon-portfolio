@@ -23,6 +23,26 @@
   margin-top: 10px;
 }
 
+#CV {
+  padding: 10px 20px;
+  background-color: #0077b5;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  text-align: center;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+CV:hover {
+  background-color: #005582;
+  transform: scale(1.05);
+}
+
 /* Ajustements pour les petits écrans */
 @media (max-width: 768px) {
   .header-content {
