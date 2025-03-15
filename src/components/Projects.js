@@ -1,33 +1,94 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const Projects = () => {
+  // Données des projets
+  const projects = [
+    {
+      id: 1,
+      title: "Projet chez Nemera",
+      description: "Conversion d'un document Word en site web",
+      technologies: ["HTML", "CSS", "Javascript"],
+    },
+    {
+      id: 2,
+      title: "Chrono trail",
+      description: "Une interface web pour la gestion des cours et le suivi en temps réel, utilisant des capteurs pour automatiser le chrono et afficher le classement en temps réel.",
+      technologies: ["HTML", "CSS", "node.js", "Javascript", "PostgreSQL"],
+    },
+    {
+      id: 3,
+      title: "Interface web pour sélectionner une station de radio",
+      description: "Création d'une interface web permettant de choisir la station de radio voulue.",
+      technologies: ["HTML", "CSS", "Javascript", "PostgreSQL"],
+    },
+    {
+      id: 4,
+      title: "Portfolio créatif",
+      description: "Mon portfolio en ligne, réalisé en React.",
+      technologies: ["HTML/CSS", "JavaScript", "React"],
+    },
+    {
+      id: 5,
+      title: "Application de gestion de tâches",
+      description: "Une application de gestion de tâches créée avec React et Node.js.",
+      technologies: ["Node.js", "Express", "MongoDB", "JWT"],
+    },
+  ];
+  
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+  
+  const projectVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { type: "spring", stiffness: 100, damping: 12 }
+    }
+  };
+
   return (
-    <section className="section">
+    <section className="projects-section">
       <h2>Mes Projets</h2>
-      <div className="project">
-        <h3>Projet 1: Application de gestion de tâches</h3>
-        <p>Une application de gestion de tâches créée avec React et Node.js.</p>
-      </div>
-      <div className="project">
-        <h3>Projet 2: Portfolio interactif</h3>
-        <p>Mon portfolio en ligne, réalisé en React.</p>
-      </div>
-      <div className="project">
-        <h3>Projet 3: Interface web pour sélectionner une station de radio</h3>
-        <p>Création d'une interface web permettant de choisir la station de radio voulue.</p>
-      </div>
-      <div className="project">
-        <h3>Projet 4: Chrono trail</h3>
-        <p>Une interface web pour la gestion de courses et le suivi en temps réel, utilisant des capteurs pour automatiser le chrono et afficher le classement en temps réel.</p>
-      </div>
-      <div className="project">
-        <h3>Projet 5: Formulaire d'inscription/connexion</h3>
-        <p>Formulaire d'inscription et de connexion avec intégration dans une base de données MySQL.</p>
-      </div>
-      <div className="project">
-        <h3>Projet 6: Projet chez Nemera</h3>
-        <p>Conversion d'un document Word en site web alliant HTML, CSS et JavaScript.</p>
-      </div>
+      <p className="section-intro">
+        Découvrez une sélection de mes projets récents. Chaque projet est une occasion
+        d'explorer de nouvelles technologies et de résoudre des problèmes complexes.
+      </p>
+      
+      <motion.div 
+        className="projects-grid"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {projects.map(project => (
+          <motion.div
+            key={project.id}
+            className="project-card"
+            variants={projectVariants}
+          >
+            <div className="project-info">
+              <h3 className="project-title">{project.title}</h3>
+              <p className="project-description">{project.description}</p>
+              
+              <div className="project-tags">
+                {project.technologies.map((tech, index) => (
+                  <span key={index} className="project-tag">{tech}</span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </motion.div>
     </section>
   );
 };
