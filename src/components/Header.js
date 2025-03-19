@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-// Chemin corrigé basé sur l'emplacement exact de votre fichier
+import cvFile from "../assets/CV.pdf";
+
 const Header = () => {
   // Animations
   const logoVariants = {
@@ -16,7 +17,7 @@ const Header = () => {
       }
     }
   };
-
+  
   const imageVariants = {
     hidden: { opacity: 0, scale: 0.8 },
     visible: {
@@ -30,7 +31,7 @@ const Header = () => {
       }
     }
   };
-
+  
   const taglineVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -42,45 +43,48 @@ const Header = () => {
     }
   };
 
+  
+  const handleDownloadCV = () => {
+    const link = document.createElement("a");
+    link.href = cvFile;
+    link.download = "CV.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+};
   return (
-    <header className="main-header">
-      <div className="header-content">
-        
-        <div className="header-text">
-          <motion.div 
-            className="logo-container"
+    <header className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-6 px-4">
+      <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
+        <div className="flex flex-col items-center md:items-start mb-4 md:mb-0">
+          <motion.h1 
+            className="text-3xl font-bold"
+            variants={logoVariants}
             initial="hidden"
             animate="visible"
-            variants={logoVariants}
           >
-            <h1 className="logo">
-              <span className="logo-accent"></span>
-              <span className="logo-name">Bilhaut Thomas</span>
-              <span className="logo-accent"></span>
-            </h1>
-          </motion.div>
-          
+            Bilhaut Thomas
+          </motion.h1>
           <motion.p 
-            className="tagline"
+            className="text-xl mt-2"
             variants={taglineVariants}
             initial="hidden"
             animate="visible"
           >
-            Recherche Alternance Développement De Solutions Digitales 
+            Recherche Alternance Développement De Solutions Digitales
           </motion.p>
         </div>
+        
+        <div className="flex items-center">
+          <motion.button
+            onClick={handleDownloadCV}
+            className="bg-white text-blue-800 px-4 py-2 rounded-lg font-medium hover:bg-blue-100 transition-colors duration-300"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Télécharger mon CV
+          </motion.button>
+        </div>
       </div>
-      
-      <motion.div 
-        className="social-header"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-      >
-        <a href="https://www.linkedin.com/in/thomas-bilhaut-a4392934a/" target="_blank" rel="noopener noreferrer" className="social-link">
-          <i className="fab fa-linkedin"></i>
-        </a>
-      </motion.div>
     </header>
   );
 };
