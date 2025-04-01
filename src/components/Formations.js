@@ -10,7 +10,6 @@ const Formations = () => {
             <li> 2023-2024 : 1ere année bts informatique, électronique et réseau  </li>
             <li> 2022-2023 : 1ere année licence informatique à Rouen </li>
             <li> Juin 2022 : obtention du bac en sti2d : science et technologie de l’industrie et du développement durable. </li>
-            <li> Juin 2018 : obtention du brevet des collèges </li>
         </ul>
     </section>
     );

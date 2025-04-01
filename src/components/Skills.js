@@ -5,14 +5,16 @@ const Skills = () => {
   // Données des compétences mises à jour selon votre liste
   const skills = {
     development: [
-      { name: 'React', level: 85 },
-      { name: 'JavaScript', level: 88 },
-      { name: 'Node.js', level: 82 },
+      { name: 'React', level: 70 },
+      { name: 'JavaScript', level: 80 },
+      { name: 'Node.js', level: 75 },
       { name: 'HTML/CSS', level: 90 },
       { name: 'PHP', level: 75 },
       { name: 'C++', level: 70 },
-      { name: 'MySQL', level: 80 },
+      { name: 'MySQL', level: 70 },
+      { name: 'PostgreSQL', level: 70 },
       { name: 'Git', level: 85 },
+      { name: 'Github', level: 85 },
     ],
     softSkills: [
       { name: 'Travail d\'équipe', level: 95 },
@@ -107,7 +109,7 @@ const Skills = () => {
         <div className="tags-container">
           {[
             'React', 'JavaScript', 'Node.js', 'HTML/CSS', 
-            'Git', 'MySQL', 'PHP', 'C++', 
+            'Git','Github', 'MySQL','PostgreSQL', 'PHP', 'C++', 
             'Développement Web', 'Applications Web', 'Bases de données'
           ].map((tag, index) => (
             <motion.span 

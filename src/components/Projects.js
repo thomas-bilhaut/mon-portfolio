@@ -20,7 +20,7 @@ const Projects = () => {
       id: 3,
       title: "Interface web pour sélectionner une station de radio",
       description: "Création d'une interface web permettant de choisir la station de radio voulue.",
-      technologies: ["HTML", "CSS", "Javascript", "PostgreSQL"],
+      technologies: ["HTML", "CSS", "Javascript", "Phpmyadmin"],
     },
     {
       id: 4,
@@ -31,8 +31,8 @@ const Projects = () => {
     {
       id: 5,
       title: "Application de gestion de tâches",
-      description: "Une application de gestion de tâches créée avec React et Node.js.",
-      technologies: ["Node.js", "Express", "MongoDB", "JWT"],
+      description: "Une application de gestion de tâches créée avec javascript.",
+      technologies: ["javascript", "HTML/CSS"],
     },
   ];
   
