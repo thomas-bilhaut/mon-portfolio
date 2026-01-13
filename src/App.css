@@ -1,910 +1,479 @@
-/* Variables globales */
-:root {
-  --primary-color: #6c63ff;
-  --secondary-color: #f5f5f5;
-  --text-color: #333;
-  --bg-color: #fff;
-  --accent-color: #ff6b6b;
-  --transition-slow: 0.5s ease;
-  --transition-medium: 0.3s ease;
-  --transition-fast: 0.2s ease;
-  --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  --border-radius: 12px;
-  --container-padding: 20px; /* Variable pour gérer le padding de manière cohérente */
-}
-
-/* Reset et base */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
-  overflow-x: hidden; /* Empêche le défilement horizontal */
-  width: 100%;
+:root {
+  --primary-color: #2563eb;
+  --secondary-color: #10b981;
+  --bg-light: #f8fafc;
+  --bg-dark: #0f172a;
+  --text-light: #1e293b;
+  --text-dark: #e2e8f0;
+  --card-light: #ffffff;
+  --card-dark: #1e293b;
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   line-height: 1.6;
-  color: var(--text-color);
-  background-color: var(--bg-color);
+  transition: all 0.3s ease;
+}
+
+body.light {
+  background: var(--bg-light);
+  color: var(--text-light);
+}
+
+body.dark {
+  background: var(--bg-dark);
+  color: var(--text-dark);
 }
 
 .App {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--container-padding); /* Utilisation de la variable pour la cohérence */
-  width: 100%; /* Assure que l'app prend 100% de la largeur disponible */
+  position: relative;
+  overflow-x: hidden;
+}
+
+.App.light {
+  background: var(--bg-light);
+  color: var(--text-light);
+}
+
+.App.dark {
+  background: var(--bg-dark);
+  color: var(--text-dark);
 }
 
 /* Header */
 header {
-  padding: 20px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%; /* S'assurer que le header prend toute la largeur */
+  text-align: center;
+  padding: 3rem 2rem 2rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
 }
 
 header h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
   font-weight: 700;
-  color: var(--primary-color);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  opacity: 0.95;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--primary-color);
+  border: none;
+  padding: 12px 16px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: var(--primary-color);
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 1001;
+  color: white;
 }
 
 /* Navigation */
 nav {
-  margin: 20px 0;
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  border-radius: var(--border-radius);
-  padding: 10px;
-  box-shadow: var(--box-shadow);
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   position: sticky;
-  top: 20px;
+  top: 0;
   z-index: 100;
-  width: 100%; /* S'assurer que la navigation prend toute la largeur */
+  transition: all 0.3s ease;
+}
+
+.App.light nav {
+  background: white;
+}
+
+.App.dark nav {
+  background: #1e293b;
 }
 
 nav ul {
+  list-style: none;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  list-style: none;
-  gap: 15px;
-  padding: 0; /* Supprimer le padding par défaut des ul */
+  gap: 0.5rem;
 }
 
-nav li {
-  position: relative;
+nav li button {
+  background: none;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  transition: all 0.3s;
+  cursor: pointer;
+  font-size: 1rem;
+  font-family: inherit;
 }
 
-nav a {
-  text-decoration: none;
-  color: var(--text-color);
-  font-weight: 500;
-  padding: 10px 15px;
-  border-radius: var(--border-radius);
-  transition: all var(--transition-medium);
-  display: block;
+.App.light nav li button {
+  color: #1e293b;
 }
 
-nav a:hover {
-  background-color: rgba(108, 99, 255, 0.1);
-  transform: translateY(-2px);
+.App.dark nav li button {
+  color: #e2e8f0;
 }
 
-nav a.active {
-  background-color: var(--primary-color);
+nav li button:hover {
+  background: var(--primary-color);
   color: white;
 }
 
-/* Animation du titre */
+nav li button.active {
+  background: var(--primary-color);
+  color: white;
+  font-weight: 600;
+}
+
+/* Content Box */
 .content-box-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  min-height: 200px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  z-index: 1000;
-  pointer-events: none;
+  justify-content: center;
 }
 
 .content-box {
-  background-color: var(--primary-color);
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  padding: 3rem;
+  border-radius: 20px;
+  text-align: center;
   color: white;
-  padding: 40px 80px;
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
 .content-box h2 {
-  font-size: 3rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-/* Conteneur de section */
-.section-container {
-  flex: 1;
-  padding: 30px 0;
-  position: relative;
-  width: 100%; /* S'assurer que le conteneur prend toute la largeur */
-}
-
-/* Styles communs pour les sections */
-section {
-  background-color: white;
-  border-radius: var(--border-radius);
-  padding: 30px;
-  box-shadow: var(--box-shadow);
-  margin-bottom: 30px;
-  width: 100%; /* S'assurer que la section prend toute la largeur */
-  overflow: hidden; /* Empêche le débordement */
-}
-
-section h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: var(--primary-color);
-  position: relative;
-  padding-bottom: 10px;
-}
-
-section h2::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 50px;
-  height: 4px;
-  background-color: var(--accent-color);
-  border-radius: 2px;
-}
-
-/* Cartes pour projets et expériences */
-.card {
-  background-color: var(--secondary-color);
-  border-radius: var(--border-radius);
-  padding: 20px;
-  margin-bottom: 20px;
-  transition: transform var(--transition-medium);
-  width: 100%; /* Assure que la carte prend toute la largeur */
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--box-shadow);
-}
-
-/* Animations spécifiques */
-.fade-in {
-  animation: fadeIn 1s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-  :root {
-    --container-padding: 15px; /* Padding réduit sur mobile */
-  }
-  
-  nav ul {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .content-box h2 {
-    font-size: 2rem;
-  }
-  
-  section {
-    padding: 20px 15px; /* Padding réduit sur mobile */
-  }
-  
-  .main-header {
-    flex-direction: column;
-    gap: 20px;
-    text-align: center;
-    padding: 20px 0; /* Padding réduit sur mobile */
-  }
-  
-  .skills-section,
-  .projects-section {
-    padding: 20px 15px; /* Correction: padding plus petit sur mobile */
-  }
-}
-
-/* Boutons stylisés */
-.btn {
-  display: inline-block;
-  background-color: var(--primary-color);
-  color: white;
-  padding: 10px 20px;
-  border-radius: var(--border-radius);
-  text-decoration: none;
-  font-weight: 500;
-  transition: all var(--transition-fast);
-  border: none;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background-color: #5a52e0;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
-}
-
-/* Grille de compétences */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
-  width: 100%; /* Assure que la grille prend toute la largeur */
-}
-
-.skill-item {
-  background-color: var(--secondary-color);
-  border-radius: var(--border-radius);
-  padding: 15px;
-  text-align: center;
-  transition: all var(--transition-medium);
-}
-
-.skill-item:hover {
-  background-color: var(--primary-color);
-  color: white;
-  transform: scale(1.05);
-}
-
-/* Formulaire de contact */
-.contact-form {
-  display: grid;
-  gap: 20px;
-  width: 100%; /* Assure que le formulaire prend toute la largeur */
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  width: 100%; /* Assure que les champs prennent toute la largeur */
-}
-
-.form-group label {
-  margin-bottom: 5px;
-  font-weight: 500;
-}
-
-.form-group input,
-.form-group textarea {
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: var(--border-radius);
-  font-family: inherit;
-  transition: border-color var(--transition-fast);
-  width: 100%; /* Assure que les inputs prennent toute la largeur */
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
-}
-
-/* Timeline pour expériences et formations */
-.timeline {
-  position: relative;
-  padding-left: 40px;
-  width: 100%; /* Assure que la timeline prend toute la largeur */
-}
-
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 10px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background-color: var(--primary-color);
-}
-
-.timeline-item {
-  position: relative;
-  margin-bottom: 30px;
-  width: 100%; /* Assure que les items prennent toute la largeur */
-}
-
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: -40px;
-  top: 0;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: var(--primary-color);
-  border: 4px solid white;
-  box-shadow: 0 0 0 2px var(--primary-color);
-}
-
-.timeline-date {
-  font-weight: 600;
-  color: var(--primary-color);
-  margin-bottom: 5px;
-}
-
-/* Projets */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 30px;
-  width: 100%; /* Assure que la grille prend toute la largeur */
-}
-
-.project-card {
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  box-shadow: var(--box-shadow);
-  transition: transform var(--transition-medium);
-  height: 100%; /* Assure que toutes les cartes ont la même hauteur */
-  display: flex;
-  flex-direction: column;
-}
-
-.project-card:hover {
-  transform: translateY(-10px);
-}
-
-.project-image {
-  height: 200px;
-  background-color: #eee;
-  overflow: hidden;
-}
-
-.project-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--transition-slow);
-}
-
-.project-card:hover .project-image img {
-  transform: scale(1.1);
-}
-
-.project-info {
-  padding: 20px;
-  background-color: white;
-  flex-grow: 1; /* Permet au contenu de s'étendre */
-  display: flex;
-  flex-direction: column;
-}
-
-.project-title {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-}
-
-.project-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-  margin-top: auto; /* Pousse les tags vers le bas */
-}
-
-.project-tag {
-  background-color: rgba(108, 99, 255, 0.1);
-  color: var(--primary-color);
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-}
-
-/* Footer */
-footer {
-  margin-top: auto;
-  padding: 20px 0;
-  text-align: center;
-  color: #777;
-  width: 100%; /* Assure que le footer prend toute la largeur */
-}
-
-/* Animations avancées */
-.hover-float {
-  transition: transform var(--transition-medium);
-}
-
-.hover-float:hover {
-  transform: translateY(-5px);
-}
-
-/* Effet de page */
-.page-wrapper {
-  position: relative;
-  min-height: 70vh;
-  width: 100%; /* Assure que le wrapper prend toute la largeur */
-}
-
-.page-effect {
-  position: absolute;
-  top: -50px;
-  right: -50px;
-  width: 200px;
-  height: 200px;
-  background-color: rgba(108, 99, 255, 0.1);
-  border-radius: 50%;
-  z-index: -1;
-}
-
-/* Styles pour le composant Skills */
-.skills-section {
-  background-color: white;
-  border-radius: var(--border-radius);
-  padding: 40px;
-  box-shadow: var(--box-shadow);
-  width: 100%; /* Assure que la section prend toute la largeur */
-}
-
-.section-intro {
-  font-size: 1.1rem;
-  color: #666;
-  margin-bottom: 40px;
-  max-width: 700px;
-}
-
-.skills-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 40px;
-  margin-bottom: 50px;
-  width: 100%; /* Assure que le conteneur prend toute la largeur */
-}
-
-.skills-category h3 {
-  font-size: 1.3rem;
-  margin-bottom: 20px;
-  color: var(--primary-color);
-  position: relative;
-  display: inline-block;
-}
-
-.skills-category h3::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -5px;
-  width: 100%;
-  height: 3px;
-  background-color: var(--accent-color);
-  border-radius: 1.5px;
-}
-
-.skills-group {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 100%; /* Assure que le groupe prend toute la largeur */
-}
-
-.skill-bar {
-  width: 100%;
-}
-
-.skill-info {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 5px;
-  width: 100%; /* Assure que l'info prend toute la largeur */
-}
-
-.skill-name {
-  font-weight: 500;
-}
-
-.skill-percentage {
-  color: var(--primary-color);
-  font-weight: 600;
-}
-
-.skill-progress {
-  height: 8px;
-  background-color: #f0f0f0;
-  border-radius: 4px;
-  overflow: hidden;
-  width: 100%; /* Assure que la barre prend toute la largeur */
-}
-
-.skill-progress-bar {
-  height: 100%;
-  background: linear-gradient(90deg, var(--primary-color), #a299ff);
-  border-radius: 4px;
-}
-
-.technical-skills {
-  margin-top: 30px;
-  width: 100%; /* Assure que les compétences prennent toute la largeur */
-}
-
-.technical-skills h3 {
-  font-size: 1.3rem;
-  margin-bottom: 20px;
-  color: var(--primary-color);
-}
-
-.tags-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  width: 100%; /* Assure que le conteneur prend toute la largeur */
-}
-
-.tech-tag {
-  background-color: rgba(108, 99, 255, 0.1);
-  color: var(--primary-color);
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: default;
-  transition: all var(--transition-medium);
-}
-
-.tech-tag:hover {
-  background-color: var(--primary-color);
-  color: white;
-  box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
-}
-
-/* Ajout de styles pour le mode sombre */
-.dark {
-  --bg-color: #1a1a2e;
-  --text-color: #e6e6e6;
-  --secondary-color: #16213e;
-  --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.dark .App {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-}
-
-.dark section, 
-.dark .card, 
-.dark .skills-section {
-  background-color: #242442;
-}
-
-.dark .skill-progress {
-  background-color: #3a3a5a;
-}
-
-.dark .section-intro {
-  color: #aaa;
-}
-
-.dark nav {
-  background-color: rgba(36, 36, 66, 0.8);
-}
-
-.dark .tech-tag {
-  background-color: rgba(108, 99, 255, 0.2);
-}
-
-/* Modification pour rendre les titres de projets plus voyants en mode sombre */
-.dark .project-title {
-  color: var(--accent-color); /* Utilise la couleur d'accent (rose/rouge #ff6b6b) */
-  font-weight: 600;
-}
-
-/* Animation du thème */
-.App {
-  transition: background-color 0.5s ease, color 0.5s ease;
-}
-
-.theme-toggle {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: var(--primary-color);
-  color: white;
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  border: none;
-  box-shadow: var(--box-shadow);
-  z-index: 100;
-  transition: all var(--transition-medium);
-}
-
-.theme-toggle:hover {
-  transform: translateY(-3px) rotate(15deg);
-  box-shadow: 0 10px 20px rgba(108, 99, 255, 0.4);
-}
-
-/* Animations supplémentaires */
-@keyframes float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 .title-bar {
   height: 4px;
   background: white;
-  margin-top: 10px;
   border-radius: 2px;
-  width: 100%; /* Assure que la barre prend toute la largeur */
 }
 
-/* Responsive design amélioré */
+/* Section Container */
+.section-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.content-section {
+  margin-bottom: 2rem;
+}
+
+/* Icon Header */
+.icon-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+}
+
+.icon-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* Content Cards */
+.content-card {
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.App.light .content-card {
+  background: white;
+}
+
+.App.dark .content-card {
+  background: #1e293b;
+}
+
+.content-card h3 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.content-card p {
+  margin-bottom: 1rem;
+  line-height: 1.8;
+}
+
+.content-card ul {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.content-card li {
+  margin-bottom: 0.5rem;
+}
+
+.date {
+  font-style: italic;
+  font-size: 0.95rem;
+}
+
+.App.light .date {
+  color: #64748b;
+}
+
+.App.dark .date {
+  color: #94a3b8;
+}
+
+/* Skills List */
+.skills-list {
+  list-style: none;
+  margin-left: 0;
+}
+
+.skills-list li {
+  padding: 0.5rem 0;
+}
+
+.App.light .skills-list li {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.App.dark .skills-list li {
+  border-bottom: 1px solid #334155;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--primary-color);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -2.5rem;
+  top: 1rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--primary-color);
+}
+
+.App.light .timeline-dot {
+  border: 3px solid white;
+}
+
+.App.dark .timeline-dot {
+  border: 3px solid #1e293b;
+}
+
+/* Skills Grid */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.skill-category {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Projects Grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-card {
+  transition: transform 0.3s;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.tech-stack {
+  color: var(--secondary-color);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Contact */
+.contact-card {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.contact-info {
+  margin: 2rem 0;
+}
+
+.contact-item {
+  padding: 1rem;
+  border-left: 3px solid var(--primary-color);
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
+
+.App.light .contact-item {
+  background: #f8fafc;
+}
+
+.App.dark .contact-item {
+  background: #0f172a;
+}
+
+.contact-item a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.contact-item a:hover {
+  text-decoration: underline;
+}
+
+.availability {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border-radius: 12px;
+}
+
+.availability h4 {
+  margin-bottom: 1rem;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem;
+  margin-top: 4rem;
+}
+
+.App.light footer {
+  background: #f1f5f9;
+}
+
+.App.dark footer {
+  background: #0f172a;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.social-links a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.social-links a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-  .skills-container {
-    grid-template-columns: 1fr;
+  .mobile-menu-btn {
+    display: block;
   }
 
-  .skills-section {
-    padding: 30px 15px;
+  header h1 {
+    font-size: 2rem;
   }
-  
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    height: 100vh;
+    transition: left 0.3s ease;
+  }
+
+  nav.mobile-open {
+    left: 0;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: stretch;
+    padding-top: 60px;
+  }
+
+  nav li button {
+    width: 100%;
+    text-align: left;
+  }
+
+  .skills-grid,
   .projects-grid {
     grid-template-columns: 1fr;
   }
-  
-  .project-card {
-    max-width: 100%; /* Assure que les cartes ne dépassent pas en largeur */
+
+  .content-box h2 {
+    font-size: 1.8rem;
   }
-}
-
-/* Style pour les animations de scroll */
-.scroll-animation {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.scroll-animation.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Styles pour les particules de fond */
-.background-particle {
-  position: fixed;
-  filter: blur(40px);
-  animation: float 8s ease-in-out infinite;
-}
-
-/* Ajustements d'accessibilité */
-@media (prefers-reduced-motion: reduce) {
-  .background-particle {
-    animation: none;
-  }
-
-  .scroll-animation {
-    transition: none;
-  }
-
-  .skill-progress-bar {
-    transition: none;
-  }
-}
-
-/* Styles pour le composant Projects */
-.projects-section {
-  padding: 40px;
-  border-radius: var(--border-radius);
-  background-color: white;
-  box-shadow: var(--box-shadow);
-  width: 100%; /* Assure que la section prend toute la largeur */
-}
-
-.filter-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 30px;
-  justify-content: center;
-  width: 100%; /* Assure que le conteneur prend toute la largeur */
-}
-
-.filter-btn {
-  background-color: var(--secondary-color);
-  border: none;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all var(--transition-medium);
-  color: var(--text-color);
-  font-weight: 500;
-}
-
-.filter-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.filter-btn.active {
-  background-color: var(--primary-color);
-  color: white;
-  box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
-}
-
-/* Styles pour le Header */
-.main-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 40px 20px;
-  width: 100%; /* Assure que le header prend toute la largeur */
-  background-color: #1f1f1f;
-}
-
-.header-content {
-  display: flex;
-  flex-direction: column;
-  text-align: center; /* Centre les éléments pour les petits écrans */
-}
-
-.logo {
-  font-size: 2.5rem;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  color: #e0e0e0;
-}
-
-.logo-accent {
-  color: var(--primary-color);
-  font-weight: 900;
-}
-
-.logo-name {
-  margin: 0 5px;
-}
-
-.tagline {
-  font-size: 1.1rem;
-  color: #666;
-  margin-top: 5px;
-}
-
-.social-header {
-  display: flex;
-  gap: 20px;
-  margin-top: 20px;
-  justify-content: center; /* Centrer les icônes socialement */
-}
-
-.social-link {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: var(--secondary-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-color);
-  font-size: 1.5rem;
-  transition: all var(--transition-medium);
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre légère pour le bouton */
-}
-
-.social-link:hover {
-  background-color: var(--primary-color);
-  color: white;
-  transform: translateY(-5px); /* Effet de déplacement au survol */
-  box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
-}
-
-/* Styles pour le bouton */
-.btn {
-  background-color: #0077b5; /* Bleu du bouton */
-  color: white;
-  padding: 12px 30px;
-  font-size: 16px;
-  font-weight: bold;
-  border: none;
-  border-radius: 50px; /* Effet arrondi plus marqué */
-  cursor: pointer;
-  transition: all 0.3s ease; /* Transition douce */
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre légère pour le bouton */
-  margin-top: 20px;
-  text-decoration: none; /* Supprimer le souligné si c'est un lien */
-}
-
-.btn:hover {
-  background-color: #005582; /* Couleur plus foncée au survol */
-  transform: scale(1.05); /* Agrandir le bouton au survol */
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Ombre plus marquée au survol */
-}
-
-.btn:active {
-  transform: scale(0.98); /* Réduire le bouton quand on clique */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Légère ombre lors du clic */
-}
-
-.btn:focus {
-  outline: none; /* Supprimer le contour par défaut */
-  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.5); /* Ajouter une bordure d'accentuation lors du focus */
-}
-
-
-/* Réduction de la taille des éléments sur mobile */
-@media (max-width: 768px) {
-  .main-header {
-    flex-direction: column;  /* Passe en colonne pour les petits écrans */
-    text-align: center;  /* Centre le texte */
-  }
-
-  .logo {
-    font-size: 2rem;  /* Réduit la taille du logo */
-  }
-
-  .tagline {
-    font-size: 1rem;  /* Taille du texte plus petite sur mobile */
-    margin-top: 10px;
-  }
-
-  .social-header {
-    gap: 15px;  /* Réduit l'écart entre les icônes sur mobile */
-  }
-}
-
-@media (max-width: 480px) {
-  .logo {
-    font-size: 1.8rem;  /* Réduit encore la taille sur très petits écrans */
-  }
-
-  .social-link {
-    width: 45px;
-    height: 45px;
-    font-size: 1.2rem;
-  }
-}
-
-
-/* Dark mode */
-.dark .tagline {
-  color: #aaa;
-}
-
-.dark .social-link {
-  background-color: #333355;
-  color: #e6e6e6;
-}
-
-/* Correction pour les titres de projet en mode sombre */
-.dark .project-info {
-  background-color: #242442;
 }
