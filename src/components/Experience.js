@@ -19,7 +19,7 @@ const Experience = () => (
         <div className="timeline-dot"></div>
         <div className="content-card">
           <h3>Support Informatique - Stage</h3>
-          <p className="date">2024 | Entreprise XYZ</p>
+          <p className="date">202 | Nemera</p>
           <ul>
             <li>Assistance technique aux utilisateurs (helpdesk)</li>
             <li>Installation et configuration de postes de travail</li>
