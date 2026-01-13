@@ -1,96 +1,76 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Code } from 'lucide-react';
 
-const Projects = () => {
-  // Données des projets
-  const projects = [
-    {
-      id: 1,
-      title: "Projet chez Nemera",
-      description: "Conversion d'un document Word en site web",
-      technologies: ["HTML", "CSS", "Javascript"],
-    },
-    {
-      id: 2,
-      title: "Chrono trail",
-      description: "Une interface web pour la gestion des cours et le suivi en temps réel, utilisant des capteurs pour automatiser le chrono et afficher le classement en temps réel.",
-      technologies: ["HTML", "CSS", "node.js", "Javascript", "PostgreSQL"],
-    },
-    {
-      id: 3,
-      title: "Interface web pour sélectionner une station de radio",
-      description: "Création d'une interface web permettant de choisir la station de radio voulue.",
-      technologies: ["HTML", "CSS", "Javascript", "Phpmyadmin"],
-    },
-    {
-      id: 4,
-      title: "Portfolio créatif",
-      description: "Mon portfolio en ligne, réalisé en React.",
-      technologies: ["HTML/CSS", "JavaScript", "React"],
-    },
-    {
-      id: 5,
-      title: "Application de gestion de tâches",
-      description: "Une application de gestion de tâches créée avec javascript.",
-      technologies: ["javascript", "HTML/CSS"],
-    },
-  ];
-  
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-  
-  const projectVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { type: "spring", stiffness: 100, damping: 12 }
-    }
-  };
+const Projects = () => (
+  <motion.section 
+    className="content-section"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -20 }}
+  >
+    <div className="icon-header">
+      <Code size={40} />
+      <h2>Projets réalisés</h2>
+    </div>
 
-  return (
-    <section className="projects-section">
-      <h2>Mes Projets</h2>
-      <p className="section-intro">
-        Découvrez une sélection de mes projets récents. Chaque projet est une occasion
-        d'explorer de nouvelles technologies et de résoudre des problèmes complexes.
-      </p>
-      
-      <motion.div 
-        className="projects-grid"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {projects.map(project => (
-          <motion.div
-            key={project.id}
-            className="project-card"
-            variants={projectVariants}
-          >
-            <div className="project-info">
-              <h3 className="project-title">{project.title}</h3>
-              <p className="project-description">{project.description}</p>
-              
-              <div className="project-tags">
-                {project.technologies.map((tech, index) => (
-                  <span key={index} className="project-tag">{tech}</span>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
-    </section>
-  );
-};
+    <div className="projects-grid">
+
+      <div className="content-card project-card">
+        <h3>🏢 Projet chez Nemera</h3>
+        <p className="tech-stack">Technologies : HTML, CSS, JavaScript</p>
+        <p>
+          Conversion d’un document Word en site web structuré et responsive,
+          respectant la charte graphique et les besoins métier.
+        </p>
+      </div>
+
+      <div className="content-card project-card">
+        <h3>🏃 ChronoTrail</h3>
+        <p className="tech-stack">
+          Technologies : HTML, CSS, JavaScript, Node.js, PostgreSQL
+        </p>
+        <p>
+          Application web de gestion de courses de trail avec suivi en temps réel,
+          automatisation du chronométrage via capteurs RFID et affichage du classement.
+        </p>
+      </div>
+
+      <div className="content-card project-card">
+        <h3>📻 Sélecteur de station radio</h3>
+        <p className="tech-stack">
+          Technologies : HTML, CSS, JavaScript, PHPMyAdmin
+        </p>
+        <p>
+          Développement d’une interface web permettant à l’utilisateur de sélectionner
+          facilement une station de radio via une interface simple et intuitive.
+        </p>
+      </div>
+
+      <div className="content-card project-card">
+        <h3>🎨 Portfolio créatif</h3>
+        <p className="tech-stack">
+          Technologies : React, JavaScript, HTML / CSS
+        </p>
+        <p>
+          Conception et développement de mon portfolio personnel en React,
+          mettant en avant mes compétences, projets et animations modernes.
+        </p>
+      </div>
+
+      <div className="content-card project-card">
+        <h3>✅ Application de gestion de tâches</h3>
+        <p className="tech-stack">
+          Technologies : JavaScript, HTML / CSS
+        </p>
+        <p>
+          Application permettant de créer, modifier et supprimer des tâches,
+          avec une gestion dynamique des états et une interface claire.
+        </p>
+      </div>
+
+    </div>
+  </motion.section>
+);
 
 export default Projects;

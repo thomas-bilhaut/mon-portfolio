@@ -38,7 +38,7 @@ const Experience = () => (
             <li>Configuration de serveurs Linux (Ubuntu Server, Debian)</li>
             <li>Mise en place d'environnements de virtualisation (VirtualBox, VMware)</li>
             <li>Développement d'applications web avec React et Node.js</li>
-            <li>Configuration de réseaux domestiques et VPN</li>
+            <li>Configuration de réseaux </li>
           </ul>
         </div>
       </div>
